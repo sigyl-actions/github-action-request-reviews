@@ -37143,7 +37143,9 @@ var slugify_default = /*#__PURE__*/__nccwpck_require__.n(slugify);
     repo,
     commit_sha: sha,
   });
-  return lastCommit;
+  return {
+    lastCommit,
+  };
 });
 
 ;// CONCATENATED MODULE: ./lib/async-to-array.js
@@ -37379,20 +37381,17 @@ async function run() {
 
   try {
     const octokit = new dist_node.Octokit({
-      auth: core.getInput('token', { required: true }) || process.env.TOKEN,
+      auth: core.getInput('token') || process.env.TOKEN,
     });
 
     const [owner, repo] = (
       core.getInput('repository')
       || (github_default())?.context?.payload?.repository?.full_name
-      || 'gb-org-demo/new-demo'
+      || process.env.REPO
     ).split("/");
     const teams = (core.getInput('teams')
       ? core.getInput('teams').split(',')
-      : [
-        'b2',
-        'b3'
-      ]).map((s) => s.trim()).map((slugify_default()));
+      : process.env.TEAMS.split(',')).map((s) => s.trim()).map((slugify_default()));
     console.log({
       teams,
       owner,
