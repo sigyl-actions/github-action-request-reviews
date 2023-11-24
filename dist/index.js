@@ -37335,6 +37335,7 @@ let array = [];
       (team) => team !== nextTeam,
     )
   console.log({
+    sha,
     teams,
     nextTeam,
     lastCommit,
