@@ -37292,6 +37292,8 @@ let array = [];
 
 
 
+
+
 /* harmony default export */ const review_requester = ((octokit) => async ({
   teams,
   owner,
@@ -37354,6 +37356,9 @@ let array = [];
       team_reviewers: teamsToRemove,
     });
   }
+  if(nextTeam) {
+    core.setOutput('more', 'true')
+  }
   if (nextTeam && requestedTeams.indexOf(nextTeam) === -1) {
     console.log(`requesting team: '${nextTeam}'`);
     await octokit.rest.pulls.requestReviewers({
@@ -37362,9 +37367,15 @@ let array = [];
       pull_number,
       team_reviewers: [nextTeam]
     });
+    core.setOutput('more', 'true')
   }
   else {
-    console.log(`team: '${nextTeam}' already requested, doing nothing`)
+    if (nextTeam) {
+      console.log(`team: '${nextTeam}' already requested, doing nothing`)
+    } else {
+      console.log('no more teams to review');
+      core.setOutput('more', 'false')
+    }
   }
 });
 ;// CONCATENATED MODULE: ./lib/main.js
@@ -37379,7 +37390,6 @@ let array = [];
 async function run() {
 
   try {
-    console.log(JSON.stringify(github.context, null, 2))
     const octokit = new dist_node.Octokit({
       auth: core.getInput('token') || process.env.TOKEN,
     });
@@ -37389,7 +37399,6 @@ async function run() {
       || github?.context?.payload?.repository?.full_name
       || process.env.REPO
     ).split("/");
-    console.log(core.getInput('teams'))
     const teams = (core.getInput('teams')
       ? core.getInput('teams').split(',')
       : process.env.TEAMS.split(',')).map((s) => s.trim()).map((slugify_default()));

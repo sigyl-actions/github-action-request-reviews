@@ -16,6 +16,9 @@ inputs:
     description: 'The gitea token or personal access token'
     required: false
     default: ${{ github.token }}
+outputs:
+  more:
+    description: more reviews? 'true' or 'false'
 runs:
   using: 'node20'
   main: 'dist/index.js'
