@@ -37389,6 +37389,7 @@ async function run() {
       || (github_default())?.context?.payload?.repository?.full_name
       || process.env.REPO
     ).split("/");
+    console.log(core.getInput('teams'))
     const teams = (core.getInput('teams')
       ? core.getInput('teams').split(',')
       : process.env.TEAMS.split(',')).map((s) => s.trim()).map((slugify_default()));
