@@ -37378,7 +37378,7 @@ async function run() {
 
   try {
     const octokit = new dist_node.Octokit({
-      auth: core.getInput('token') || process.env.TOKEN,
+      auth: core.getInput('token', { required: true }) || process.env.TOKEN,
     });
 
     const [owner, repo] = (

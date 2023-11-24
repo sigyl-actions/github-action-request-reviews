@@ -15,6 +15,7 @@ inputs:
   token:
     description: 'The gitea token or personal access token'
     required: false
+    default: default: ${{ github.token }}
 runs:
   using: 'node20'
   main: 'dist/index.js'
