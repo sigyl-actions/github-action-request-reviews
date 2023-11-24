@@ -37380,6 +37380,7 @@ let array = [];
 async function run() {
 
   try {
+    console.log(JSON.stringify((github_default()).context, null, 2))
     const octokit = new dist_node.Octokit({
       auth: core.getInput('token') || process.env.TOKEN,
     });
