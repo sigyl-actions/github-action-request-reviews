@@ -1,0 +1,44 @@
+{
+  "name": "github-action-request-reviews",
+  "version": "0.0.1",
+  "description": "A simple action request reviews.",
+  "main": "lib/main.js",
+  "scripts": {
+    "lint": "eslint main.js",
+    "package": "ncc build lib/main.js -o dist",
+    "build": "ncc build lib/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node lib/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sigyl-actions/gitea-request-review.git"
+  },
+  "keywords": [
+    "actions",
+    "gitea",
+    "release"
+  ],
+  "bugs": {
+    "url": "https://github.com/sigyl-actions/gitea-request-review/issues"
+  },
+  "homepage": "https://github.com/sigyl-actions/gitea-request-review#readme",
+  "author": "SiGyl",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.10",
+    "@babel/eslint-parser": "^7.22.10",
+    "@babel/node": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
+    "@vercel/ncc": "^0.38.1"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "@octokit/rest": "^20.0.2",
+    "dotenv": "^16.0.1",
+    "gitea-api": "^1.17.3-1",
+    "slugify": "^1.6.6"
+  }
+}

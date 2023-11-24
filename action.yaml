@@ -1,0 +1,20 @@
+---
+name: github-action-request-reviews
+description: >-
+  request pr reviews
+branding:
+  icon: package
+  color: green
+inputs:
+  pr:
+    description: id or pr
+  repository:
+    description: repository
+  teams:
+    description: teams to request reviews from
+  token:
+    description: 'The gitea token or personal access token'
+    required: false
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
