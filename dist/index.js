@@ -37083,7 +37083,6 @@ var config = __nccwpck_require__(4227);
 var core = __nccwpck_require__(2186);
 // EXTERNAL MODULE: ./node_modules/@actions/github/lib/github.js
 var github = __nccwpck_require__(5438);
-var github_default = /*#__PURE__*/__nccwpck_require__.n(github);
 // EXTERNAL MODULE: ./node_modules/@octokit/rest/dist-node/index.js
 var dist_node = __nccwpck_require__(5375);
 // EXTERNAL MODULE: ./node_modules/slugify/slugify.js
@@ -37380,14 +37379,14 @@ let array = [];
 async function run() {
 
   try {
-    console.log(JSON.stringify((github_default()).context, null, 2))
+    console.log(JSON.stringify(github.context, null, 2))
     const octokit = new dist_node.Octokit({
       auth: core.getInput('token') || process.env.TOKEN,
     });
 
     const [owner, repo] = (
       core.getInput('repository')
-      || (github_default())?.context?.payload?.repository?.full_name
+      || github?.context?.payload?.repository?.full_name
       || process.env.REPO
     ).split("/");
     console.log(core.getInput('teams'))
